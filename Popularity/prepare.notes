@@ -1,0 +1,4 @@
+https://svnweb.cern.ch/trac/popdb/attachment/ticket/106/popularityCLI.py
+python popularityCLI.py "popularity/DSStatInTimeWindow/?&tstart=2011-6-1&tstop=2012-2-20&orderby=naccess" everything.json
+python parse.py everything.json > all_accessed_datasets.list
+

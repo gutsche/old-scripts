@@ -10,9 +10,10 @@ def checkDirExists(lfn):
 
 
 requestID = None
+pending = False
 allSites = 1
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "", ["id="])
+    opts, args = getopt.getopt(sys.argv[1:], "", ["id=","pending"])
 except getopt.GetoptError:
     print 'Please specify comma separated list of PhEDEx request IDs with --id'
     sys.exit(2)
@@ -21,16 +22,29 @@ except getopt.GetoptError:
 for opt, arg in opts :
     if opt == "--id" :
         requestID = arg.split(',')
-        
-if requestID == None:
+    if opt == "--pending" :
+        pending = True
+
+if requestID == None and pending == False:
     print 'Please specify comma separated list of PhEDEx request IDs with --id'
     sys.exit(2)
+    
+if pending:
+    requestID = []
+    url='https://cmsweb.cern.ch/phedex/datasvc/json/prod/requestlist?decision=pending&node=T1_US_FNAL_MSS'
+    jstr = urllib2.urlopen(url).read()
+    jstr = jstr.replace("\n", " ")
+    result = json.loads(jstr)
+    for item in result['phedex']['request']:
+        requestID.append(int(item['id']))
+
+requestID.sort()
 
 datasets = []
 blocks = []
 
 for id in requestID:
-    url='https://cmsweb.cern.ch/phedex/datasvc/json/prod/transferrequests?request=' + id
+    url='https://cmsweb.cern.ch/phedex/datasvc/json/prod/transferrequests?request=' + str(id)
     jstr = urllib2.urlopen(url).read()
     jstr = jstr.replace("\n", " ")
     result = json.loads(jstr)
