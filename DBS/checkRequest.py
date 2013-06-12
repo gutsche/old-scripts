@@ -311,9 +311,6 @@ for item in lfn:
     era = item.split('/')[3]
     if era not in eras: eras.append(era)
     
-print 'oli eras',eras
-print 'oli requests',requestID
-
 print ''
 print'Subject: tape family request for era(s)',','.join(eras),"for PhEDEx request(s):",','.join(requestID)
 print ''
