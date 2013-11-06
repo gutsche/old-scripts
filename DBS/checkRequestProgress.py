@@ -24,7 +24,7 @@ if requestIDs == None:
 progress = {}
 
 for requestID in requestIDs:
-    url='https://cmsweb.cern.ch/phedex/datasvc/json/prod/subscriptions?request=' + str(requestID)
+    url='https://cmsweb.cern.ch/phedex/datasvc/json/prod/subscriptions?create_since=365&request=' + str(requestID)
     jstr = urllib2.urlopen(url).read()
     jstr = jstr.replace("\n", " ")
     result = json.loads(jstr)
