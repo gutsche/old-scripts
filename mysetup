@@ -4,7 +4,8 @@
 
 if [ "$1" == "fnal" ]; then
    echo "FNAL CMS software environment"
-   . /uscmst1/prod/sw/cms/shrc prod
+   source /uscmst1/prod/sw/cms/shrc cvmfs
+   export SCRAM_ARCH=slc6_amd64_gcc481
 elif [ "$1" == "fnal_ui" ]; then
    echo "FNAL UI environment"
    source /uscmst1/prod/grid/gLite_SL5.sh
@@ -38,11 +39,10 @@ elif [ "$1" == "crab_ucsd" ]; then
    source /code/osgcode/ucsdt2/Crab/etc/crab.sh
 elif [ "$1" == "go_fnal" ]; then
    echo "FNAL working environment"
-   export CMS2_LOCATION=/uscms/home/gutsche/work/software/DataTaking/CMSSW_5_3_7/src
-   source /uscmst1/prod/sw/cms/bashrc prod
-   source /uscmst1/prod/grid/gLite_SL5.sh
+   source /uscmst1/prod/sw/cms/shrc cvmfs
+   export SCRAM_ARCH=slc6_amd64_gcc481
    source /uscmst1/prod/grid/CRAB/crab.sh
-   cd $CMS2_LOCATION
+   cd /uscms/home/gutsche/work/software/Software/CMSSW_7_0_0/src
    cmsenv
    cd
 elif [ "$1" == "data_fnal" ]; then
