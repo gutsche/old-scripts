@@ -74,6 +74,10 @@ elif [ "$1" == "go_cern" ]; then
    cd /afs/cern.ch/user/g/gutsche/software/CMSSW_5_3_7/src
    cmsenv
    cd
+   echo "CERN UI environment"
+   source /afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh
+   echo "CERN CRAB configuration"
+   source /afs/cern.ch/cms/ccs/wm/scripts/Crab/crab.sh
 elif [ "$1" == "go_ucsd" ]; then 
    echo "UCSD CMS2 working environment" 
    source /code/osgcode/cmssoft/cmsset_default.sh CMSSW_1_6_12   
